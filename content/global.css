@@ -1,0 +1,91 @@
+/* Player font. */
+@import url('https://fonts.Googleapis.com/css?family=Roboto:400&display=swap');
+
+
+/* Vector fonts. */
+@font-face {
+  font-family: 'fwdeap-icon';
+  src:  url('fonts/fwdeap-icon.eot?3y6s6o');
+  src:  url('fonts/fwdeap-icon.eot?3y6s6o#iefix') format('embedded-opentype'),
+    url('fonts/fwdeap-icon.ttf?3y6s6o') format('truetype'),
+    url('fonts/fwdeap-icon.woff?3y6s6o') format('woff'),
+    url('fonts/fwdeap-icon.svg?3y6s6o#fwdeap-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="fwdeap-icon-"], [class*=" fwdeap-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'fwdeap-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fwdeap-icon-pause:before {
+  content: "\e900";
+}
+.fwdeap-icon-play:before {
+  content: "\e901";
+}
+.fwdeap-icon-sound:before {
+  content: "\e902";
+}
+.fwdeap-icon-sound-off:before {
+  content: "\e903";
+}
+
+.fwdeap-main-button-normal-state{
+	font-family: "fwdicon";
+	overflow: visible!important;
+	font-size: 22px !important;
+	color:#999999 !important;
+}
+
+.fwdeap-main-button-selected-state{
+	font-family: "fwdicon";
+	overflow: visible !important;
+	font-size: 22px !important;
+	color:#FFFFFF !important;
+}
+
+.fwdeap-main-button-normal-state .fwdeap-icon-play:before,
+.fwdeap-main-button-selected-state .fwdeap-icon-play:before{
+	position:relative;
+	font-size: 24px !important;
+	top: 1px !important;
+}
+
+.fwdeap-main-button-normal-state .fwdeap-icon-pause:before,
+.fwdeap-main-button-selected-state .fwdeap-icon-pause:before{
+	position:relative;
+	left: -2px !important;
+	
+}
+
+.fwdeap-main-button-normal-state .fwdeap-icon-sound:before,
+.fwdeap-main-button-selected-state .fwdeap-icon-sound:before{
+	position:relative;
+	top: -1px !important;
+}
+
+/* Controler. */
+.fwdeap-controler-tooltip-text{
+  	font: 400 12px Roboto, Arial !important;
+}
+
+.fwdeap-time{
+	font: 400 12px Roboto, Arial !important;
+}
+
+.fwdeap-controler-tooltip-background{}
+
+.fwdeap-controler-tooltip-pointer{}
