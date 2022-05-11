@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>API</title>
+
+		<!-- Meta -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1 user-scalable=no" />
+		
+		<!-- Import required css and js files -->
+		<style type="text/javascript" src="content/global.css"></style>
+		<script type="text/javascript" src="java/FWDEAP.js"></script>
+		
+		<!-- Setup audio player-->
+		<script type="text/javascript">
+			FWDEAPUtils.onReady(function(){
+				new FWDEAP({		
+					//main settings
+					instanceName:"player1",
+					parentId:"myDiv",
+					mainFolderPath:"content", 
+					skinPath:"classic_skin_dark",
+					sourcePath:"content/mp3/1.mp3",
+					facebookAppId:"213684265480896",
+					useOnlyAPI:"no",
+					rightClickContextMenu:"developer",
+					initializeOnlyWhenVisible:"no",
+					addKeyboardSupport:"yes",
+					autoPlay:"no",
+					loop:"yes",
+					soundCloudAPIKey:"",
+					useHEXColorsForSkin:"no",
+                	normalHEXButtonsColor:"#FF0000",
+                	normalHEXButtonsColor2:"#00FF00",
+					maxWidth:470,
+					volume:.8,
+					//controller settings
+					animateOnIntro:"yes",
+					useVectorIcons:"no",
+					showOnlyPlayButton:"no",
+					showBackgroundBar:"yes", 
+					showMainScrubber:"yes",
+					showTime:"yes",
+					showVolumeScrubber:"yes",
+					showVolumeButton:"yes",
+					showToolTips:"yes",
+					positionPlayButton:"first",
+					repeatBackground:"no",
+					controllerHeight:43,
+					startSpaceBetweenButtons:11,
+					spaceBetweenButtons:10,
+					volumeScrubberWidth:80,
+					scrubbersOffsetWidth:3,
+					scrubbersOffestTotalWidth:0,
+					timeOffsetLeftWidth:3,
+					timeOffsetRightWidth:2,
+					timeOffsetTop:-1,
+					timeOffestTotalWidth:0,
+					timeColor:"#bdbdbd",
+					toolTipBackgroundColor:"#FFFFFF",
+					toolTipTextColor:"#000000",
+					//visualizer
+					useVisualizer:'yes',
+					visualizerRandomPreset:"yes",
+					visualizerPreset:"wave1",
+					visualizerColor:["#AAAAAA", "#999999", "#888888", "#777777", "#666666"],
+					visualizerCapColor: "#FFFFFF"
+				});
+
+				player1.addListener(FWDEAP.READY, readyHandler);
+				player1.addListener(FWDEAP.ERROR, errorHandler);
+				player1.addListener(FWDEAP.PLAY, playHandler);
+				player1.addListener(FWDEAP.PAUSE, pauseHandler);
+				player1.addListener(FWDEAP.STOP, stopHandler);
+				player1.addListener(FWDEAP.UPDATE, udpateHandler);
+				player1.addListener(FWDEAP.UPDATE_TIME, udpateTime);
+				player1.addListener(FWDEAP.STOP, stopHandler);
+				player1.addListener(FWDEAP.PLAY_COMPLETE, playCompleteHandler);
+			});
+
+
+			function readyHandler(e){
+				//console.log("ready handler");
+			}
+
+			function errorHandler(e){
+				//console.log(e.error);
+			}
+
+			function playHandler(e){
+				//console.log("play handler");
+			}
+
+			function pauseHandler(e){
+				//console.log("pause handler");
+			}
+
+			function stopHandler(e){
+				//console.log("stop handler");
+			}
+
+			function udpateHandler(e){
+				//console.log("udpateHandler handler " + e.percent);
+			}
+
+			function udpateTime(e){
+				//console.log("udpateTimeHandler handler " + e.time);
+			}
+
+			function stopHandler(e){
+				//console.log("stop");
+			}
+			
+			function playCompleteHandler(e){
+				//console.log("play complete");
+			}
+
+		</script>
+
+		<style>
+			body{
+				background: #444444;
+			}
+
+			#myDiv{
+				margin: 60px 0 0px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color:#aaaaaa;">	
+		<div id="myDiv"></div>
+		<div id="myDiv2"></div>
+		<div id="myDiv3"></div>
+		<div id="myDiv4"></div>
+		<button onmousedown="player1.play()">play</button>
+		<button onmousedown="player1.pause()">pause</button>
+		<button onmousedown="player1.stop()">stop</button>
+		<button onmousedown="player1.scrub(.5)">scrub to 50%</button>
+		<button onmousedown="player1.setSource('content/mp3/2.mp3')">set source</button>
+		<button onmousedown="player1.destroy()">destroy</button>
+		
+		<div id="time"></div>
+	</body>
+</html>
+
+
+
+

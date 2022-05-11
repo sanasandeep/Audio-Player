@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Easy Audio Player</title>
+		
+		<!-- Meta -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1 user-scalable=no" />
+		
+		<!-- Import required css and js files -->
+		<style type="text/javascript" src="content/global.css"></style>
+		<script type="text/javascript" src="java/FWDEAP.js"></script>
+	
+		<!-- Setup Easy Audio Player-->
+		<script type="text/javascript">
+			FWDEAPUtils.onReady(function(){
+				new FWDEAP({		
+					//main settings
+					instanceName:"player1",
+					parentId:"myDiv",
+					mainFolderPath:"content", 
+					skinPath:"classic_skin_dark",
+					sourcePath:"content/mp3/1.mp3",
+					useOnlyAPI:"no",
+					rightClickContextMenu:"developer",
+					addKeyboardSupport:"yes",
+					initializeOnlyWhenVisible:"no",
+					autoPlay:"no",
+					loop:"yes",
+					soundCloudAPIKey:"",
+					useHEXColorsForSkin:"no",
+                	normalHEXButtonsColor:"#FF0000",
+                	normalHEXButtonsColor2:"#00FF00",
+					maxWidth:750,
+					volume:.8,
+					//controller settings
+					animateOnIntro:"yes",
+					useVectorIcons:"no",
+					showOnlyPlayButton:"no",
+					showBackgroundBar:"yes", 
+					showMainScrubber:"yes",
+					showTime:"yes",
+					showVolumeScrubber:"yes",
+					showVolumeButton:"yes",
+					showToolTips:"yes",
+					positionPlayButton:"first",
+					repeatBackground:"no",
+					controllerHeight:47,
+					startSpaceBetweenButtons:16,
+					spaceBetweenButtons:10,
+					volumeScrubberWidth:80,
+					scrubbersOffsetWidth:2,
+					scrubbersOffestTotalWidth:3,
+					timeOffsetLeftWidth:5,
+					timeOffsetRightWidth:2,
+					timeOffsetTop:0,
+					timeOffestTotalWidth:4,
+					timeColor:"#bdbdbd",
+					toolTipBackgroundColor:"#FFFFFF",
+					toolTipTextColor:"#000000",
+					//visualizer
+					useVisualizer:'yes',
+					visualizerRandomPreset:"yes",
+					visualizerPreset:"wave1",
+					visualizerColor:["#AAAAAA", "#999999", "#888888", "#777777", "#666666"],
+					visualizerCapColor: "#FFFFFF"
+				});
+			});
+		</script>
+
+		<style>
+			body{
+				background: #444444;
+			}
+
+			#myDiv{
+				margin: 80px auto 0px;
+			}
+		</style>
+	</head>
+
+	<body>	
+		<div id="myDiv"></div>
+	</body>
+</html>
+
+
+
+
