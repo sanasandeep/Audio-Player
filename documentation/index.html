@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Audio Player documentation.</title>
+
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/fwd.css" type="text/css" >
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+
+		<h3 class="center alt">&ldquo;Audio Player &rdquo; Documentation by Sana Sandeep - v1.0</h3>
+
+		<hr>
+
+		<h1 class="center">&ldquo;<span class="center alt">Audio Player</span>&rdquo;</h1>
+
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Version: 2.1<br>
+					By:© SANA SANDEEP<br>
+					Email: <a href="mailto:sanasandeep@gmail.com">sanasandeep@gmail.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->
+
+			<div class="span-12 last">
+				<p class="prepend-top append-0">If you have any questions that are beyond the scope of this help file, please feel free to email via our email. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+
+		<hr>
+
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#htmlStructure">Important notes read this before anything else.</a></li>
+			<li><a href="#preparingAudioFiles">Preparing the audio files.</a></li>
+			<li><a href="#shoutcast">Preparing SHOUTCAST.</a></li>
+			<li><a href="#instalation">How to install Audio Player into your html page.</a></li>
+			<li><a href="#config">Constructor parameters.</a></li>
+			<li><a href="#encrypt">Encrypt source path.</a></li>
+			<li><a href="#api">API.</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+		</ol>
+
+		<hr>
+
+		<h3 id="important notes"><strong>A) Important notes make sure you read this!</strong> - <a href="#toc">top</a></h3>
+		<p>Please note that the Audio Player installation and configuration is not complicated but because it has a lot of customizable settings it might seem complicated, please go through the entire documentation before trying to install it into your own page. Basically what it must be done is to copy some html code from the examples we provided and paste it into your own html page and of course add your own audio file.</p>
+		<p>The server is character case sensitive so make sure that the Audio Player settings are identical to those from the provided examples.</p>
+		<p>When testing local on IE7/IE8 it will not work because the flash (.swf) file is trying to comunicate with the browser and this is not allowed, of course it will work fine when tested online.</p>
+
+		<h3 id="preparingAudioFiles"><strong>B) Preparing the audio files.</strong> - <a href="#toc">top</a></h3>
+		<p>This audio player requires only .mp3, there is no need to suply an .ogg or other type of audio source.</p>
+
+		<h3 id="shoutcast"><strong>C) Preparing SHOUTCAST.</strong> - <a href="#toc">top</a></h3>
+		<p>In order to stream shoutcast instead on adding the source mp3 file path add the shoutcast server address and at the end of it ;.mp3 , like this : http://95.141.24.224:80/;.mp3.  Adding the ;.mp3 at the end of the address will force the server to serve the mp3 stream instead of the http web page. Please note that this player has support only for mp3 stream and it will not work correctly with other formats like .acc or .ogg. The good news is that the player will play the stream on all browser no matter which operating system is used, this applies to both mobile and desktop.</p>
+
+		<h3 id="instalation"><strong>D) How to install Audio Player into your html page.</strong> - <a href="#toc">top</a></h3>
+		<p>This is a small tutorial about how to install the Audio Player into your page. Audio Player can be e embedded into a html page inside a div of your choosing, the Audio Player will adapt its width based on the <span class="boldLi">maxWidth</span> property specified in the constructor, the height is set based on the skin height, if the page is resized and the parent div width is smaller then the <span class="boldLi">maxWidth</span> property the Audio Player will adapt its size accordingly.</p>
+		<p>In the download files inside the start folder there are html files starting with the label "skin", each of this examples have exactly the same structure with different constructor settings you can use one of them to copy and paste the needed html code based on skin that you need, I will use the skin-minimal-white.html as an example for this tutorial.</p>
+		<p>The skin is created using javascript and .png images, if you want a custom skin please contact us. If you want to create a skin of your own modify the ones we already provided.</p>
+
+		<ul>
+			<li>Copy and paste the content folder and the java folder into the same folder with your .html file, inside the content folder there are other folders which are self explanatory. Keep only the skin folders that you need to save space on the server.</li>
+			<li>Open skin-minimal-white.html with a text editor.</li>
+			<li>The javascript file must be imported, in the head section of your html file add the code from the below image.</li>
+			<pre class="brush: js; html-script: true, class-name: 'negativeLeftMarginsHTML'">
+				<style type="text/javascript" src="content/global.css"></style>
+				<script type="text/javascript" src="java/FWDEAP.js"></script></pre>
+			<li>You need a div into which the Audio Player will be added as a child, so create a div and set an id for it, the id is important because it is passed in the Audio Player constructor, make sure it is unique. The Audio Player is responsive as follows, the width will adapt based on the <span class="boldLi">maxWidth</span> property specified in the constructor, the height is set based on the skin height, if the page is resized and the parent div width is smaller then the <span class="boldLi">maxWidth</span> property the Audio Player will adapt its size accordingly.</li>
+			<pre class="brush: js; html-script: true, class-name: 'negativeLeftMarginsHTML'">
+				<div id="myDiv"></div></pre>
+			<li>Next step is to set the audio path, to do this in the contructor set the <span class="boldLi">sourcePath</span> property, the path can be relative or absolute and it must point to a mp3 file.</li>
+			<li>Next step is to initialize the Audio Player with javascript, in the head section of your html page add the code from the below image. Please note that all parameters are described in the <a href="#config">constructor parameters</a> section</li>
+			<pre class="brush: js; html-script: true, class-name: 'negativeLeftMarginsHTML'">
+		<script type="text/javascript">
+			FWDEAPUtils.onReady(function(){
+				new FWDEAP({
+					//main settings
+					instanceName:"player1",
+					parentId:"myDiv",
+					mainFolderPath:"content",
+					skinPath:"minimal_skin_dark",
+					sourcePath:"content/mp3/1.mp3",
+					useOnlyAPI:"no",
+					rightClickContextMenu:"developer",
+					addKeyboardSupport:"yes",
+					initializeOnlyWhenVisible:"no",
+					autoPlay:"no",
+					loop:"yes",
+					soundCloudAPIKey:"",
+					useHEXColorsForSkin:"no",
+                	normalHEXButtonsColor:"#FF0000",
+                	normalHEXButtonsColor2:"#00FF00",
+					maxWidth:750,
+					volume:.8,
+					//controller settings
+					animateOnIntro:"yes",
+					useVectorIcons:"no",
+					showOnlyPlayButton:"no",
+					showBackgroundBar:"yes",
+					showMainScrubber:"yes",
+					showTime:"yes",
+					showVolumeScrubber:"yes",
+					showVolumeButton:"yes",
+					showToolTips:"yes",
+					positionPlayButton:"first",
+					repeatBackground:"no",
+					controllerHeight:47,
+					startSpaceBetweenButtons:16,
+					spaceBetweenButtons:10,
+					volumeScrubberWidth:80,
+					scrubbersOffsetWidth:2,
+					scrubbersOffestTotalWidth:3,
+					timeOffsetLeftWidth:5,
+					timeOffsetRightWidth:2,
+					timeOffsetTop:0,
+					timeOffestTotalWidth:4,
+					timeColor:"#888888",
+					toolTipBackgroundColor:"#FFFFFF",
+					toolTipTextColor:"#000000",
+					//visualizer
+					useVisualizer:'yes',
+					visualizerRandomPreset:"yes",
+					visualizerPreset:"wave1",
+					visualizerColor:["#AAAAAA", "#999999", "#888888", "#777777", "#666666"],
+					visualizerCapColor: "#FFFFFF"
+				});
+			});
+		</script></pre>
+        </ul>
+		<p>This is how the player is installed in a HTML page, please read the  <a href="#config">Constructor parameters</a> section to understand the Audio Player properties</p>
+
+		<h3 id="config"><strong>E) Constructor parameters.</strong> - <a href="#toc">top</a></h3>
+		<p>Please open any of the .html files provided with a text editor as reference.</p>
+		<p>These parameters represents the possible setting for the Audio Player they are all visible in the below image and described below.</p>
+		<pre class="brush: js; html-script: true, class-name: 'negativeLeftMarginsHTML'">
+		<script type="text/javascript">
+			FWDEAPUtils.onReady(function(){
+				new FWDEAP({
+					//main settings
+					instanceName:"player1",
+					parentId:"myDiv",
+					mainFolderPath:"content",
+					skinPath:"minimal_skin_dark",
+					sourcePath:"content/mp3/1.mp3",
+					useOnlyAPI:"no",
+					rightClickContextMenu:"developer",
+					addKeyboardSupport:"yes",
+					initializeOnlyWhenVisible:"no",
+					autoPlay:"no",
+					loop:"yes",
+					soundCloudAPIKey:"",
+					useHEXColorsForSkin:"no",
+                	normalHEXButtonsColor:"#FF0000",
+                	normalHEXButtonsColor2:"#00FF00",
+					maxWidth:750,
+					volume:.8,
+					//controller settings
+					animateOnIntro:"yes",
+					useVectorIcons:"no",
+					showOnlyPlayButton:"no",
+					showBackgroundBar:"yes",
+					showMainScrubber:"yes",
+					showTime:"yes",
+					showVolumeScrubber:"yes",
+					showVolumeButton:"yes",
+					showToolTips:"yes",
+					positionPlayButton:"first",
+					repeatBackground:"no",
+					controllerHeight:47,
+					startSpaceBetweenButtons:16,
+					spaceBetweenButtons:10,
+					volumeScrubberWidth:80,
+					scrubbersOffsetWidth:2,
+					scrubbersOffestTotalWidth:3,
+					timeOffsetLeftWidth:5,
+					timeOffsetRightWidth:2,
+					timeOffsetTop:0,
+					timeOffestTotalWidth:4,
+					timeColor:"#888888",
+					toolTipBackgroundColor:"#FFFFFF",
+					toolTipTextColor:"#000000",
+					//visualizer
+					useVisualizer:'yes',
+					visualizerRandomPreset:"yes",
+					visualizerPreset:"wave1",
+					visualizerColor:["#AAAAAA", "#999999", "#888888", "#777777", "#666666"],
+					visualizerCapColor: "#FFFFFF"
+				});
+			});
+		</script></pre>
+		//----main----//
+		<ul>
+        	<li><span class="boldLi">instanceName</span>:"player1" - The player instance name, trough this instance the API is called for example if the instance name is "player1" and if you want to call play of this instance it is called like this player1.play();. Please note that the instance name must be unique for each instance.</li>
+			<li><span class="boldLi">parentId</span>:"myDiv" - The id of the div into which the Audio Player is added, this id must be unique for each instance.</li>
+			<li><span class="boldLi">mainFolderPath</span>:"content" - The path of the folder that contains the skins and flash file.</li>
+			<li><span class="boldLi">sourcePath</span>:"audio.mp3" - the .mp3 source path.</li>
+
+			<li><span class="boldLi">useOnlyAPI</span>:"no" - this can be yes or no, if is set to yes the Audio Player buttons and skin will not be loaded and you will have an invisible instance of the player, this is useful for custom audio players.</li>
+			<li><span class="boldLi">rightClickContextMenu</span>:"default" - this can be developer, default or disabled. We would appreciate it if you can leave this feature set to developer.</li>
+			<li><span class="boldLi">autoPlay</span>:"no" - this can be yes or no.</li>
+			<li><span class="boldLi">loop</span>:"no" - this can be yes or no.</li>
+			<li><span class="boldLi">soundCloudAPIKey</span>:"api1key" - the SoundCloud API key, more keys can be added separated by comma (key1, key2, key3 etc...) this way if one key fails the other ones will be used until one is valid and works, this also applies if the quota has been used for the 24 hours time. EAP has 8 keys included so it should work fine but if you do have your own keys please used them.</li>
+			<li><span class="boldLi">maxWidth</span>:450 - a number that represents the player maximum width in px, think of this property as it would be the max-width css property.</li>
+			<li><span class="boldLi">volume</span>:.5 - A number from 0 to 1 that represents the volume level.</li>
+			<li><span class="boldLi">backgroundColor</span>:"transparent" - the entire background color, usualy this is transparent but you can set it to any color you like.</li>
+			<li><span class="boldLi">animateOnIntro</span>:"yes" - this can be yes or no, once the Audio Player is ready the buttons will appear in place with a short animation, this behavior can be disabled by setting this property to no.</li>
+			<li><span class="boldLi">showOnlyPlayButton</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showBackgroundBar</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showMainScrubber</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showFacebookButton</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showVolumeScrubber</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showVolumeButton</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">showToolTips</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">positionPlayButton</span>:"yes" - this can be first or last.</li>
+			<li><span class="boldLi">showTime</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">repeatBackground</span>:"yes" - this can be yes or no.</li>
+			<li><span class="boldLi">progressScrubberMinWidth</span>:300 - a number that represents the scrubber minimum width in pixels, if the scrubber width is less then this number buttons will be removed from the player.</li>
+			<li><span class="boldLi">volumeScrubberWidth</span>:80 - a number  that represents the volume srubber width in pixels.</li>
+			<li><span class="boldLi">startSpaceBetweenButtons</span>:10 - a number that represents the start space between buttons, ilustrated below with the red arrows.</li>
+			<img src="assets/images/startSpace.jpg"/>
+			<li><span class="boldLi">spaceBetweenButtons</span>:10 - a number that represents the space between buttons, ilustrated below with the red arrows.</li>
+			<img src="assets/images/space2.jpg"/>
+			<li><span class="boldLi">scrubbersOffsetWidth</span>:10 - a number that represents the total amount in pixels removed from the scrubber bars progress line when they are at the end (change number to understand it better, useful based on the skin type).</li>
+			<li><span class="boldLi">scrubbersOffestTotalWidth</span>:10 - a number that represents the total amount in pixels removed from the entire scrubber bars when they are the last element/button (change number to understand it better, useful based on the skin type).
+			</li>
+			<li><span class="boldLi">timeOffsetLeftWidth</span>:10 - a negative or positive number that represents the offset left of the time, this will push the time left or right (change number to understand it better, useful based on the skin type).
+			<li><span class="boldLi">timeOffsetRightWidth</span>:10 - a negative or positive number that represents the offset right of the time, this will push the time left or right (change number to understand it better, useful based on the skin type).
+			</li>
+			<li><span class="boldLi">timeOffsetTop</span>:10 - a negative or positive number that represents the offset top of the time, this will push the time up or down (change number to understand it better, useful based on the skin type).
+			</li>
+			<li><span class="boldLi">timeOffestTotalWidth</span>:10 - a number that represents the total amount in pixels removed from the entire time when it is the last element/button (change number to understand it better, useful based on the skin type).
+			</li>
+			<li><span class="boldLi">timeColor</span>:#FFFFFF - time font color.
+			</li>
+		</ul>
+
+		//-- visualizer  --//
+		<ul>
+			<li><span class="boldLi">useVisualizer</span>:"yes" - this can be yes or no. Set it to yes to enable the audio Visualizer. Please note this will not work on locahost and it will only work with audio mp3 files.</li>
+			<li><span class="boldLi">visualizerRandomPreset</span>:"no" - this can be yes or no. Set it to yes to set a random visualizer preset each time the page loads.</li>
+			<li><span class="boldLi">visualizerPreset</span>:"wave1" - this can be wave1, wave2, bars1 or bars2.</li>
+			<li><span class="boldLi">visualizerColor</span>:["#AAAAAA", "#999999", "#888888", "#777777", "#666666"] - the visualizer color, it contains five colors that can be set as you want, do not remove or add any extra colors!</li>
+			<li><span class="boldLi">visualizerCapColor</span>:"#FFFFFF" - the visualizer cap color if the preset is bars1.</li>
+		</ul>
+
+
+		<h3 id="encrypt"><strong>F) Encrypt source path.</strong> - <a href="#toc">top</a></h3>
+		<p>To encrypt the source path I have created a tool that will encrypt the source path <a href="http://www.webdesign-flash.ro/vs/" target="_blank">at this link</a>, enter the source path (this applies all formats) in the input field then click on the <span class="boldLi">Encrypt media</span> button, once this is done copy the encrypted track path and paste it as the track source parameter.this is showed below. In this example content/mp3/01.mp3 is encrypted to encrypt:Y29udGVudC9tcDMvMDEubXAz .</p>
+
+
+	    <h3 id="api"><strong>G) API.</strong> - <a href="#toc">top</a></h3>
+		<p>Inside the donwload files there is HTML file called API-example.html, in this file I have added all events and methods for reference, open the page source to see them.</p>
+
+		<p CLASS="largeLabel1">API - public methods:</p>
+			<table>
+				  <tr class="firstTr">
+					<th class="fistTd">Function</td>
+					<th class="secondTd">Method</td>
+					<th class="thirdTd">Description</td>
+				  </tr>
+
+				  <tr>
+					<td><p class="mainProp">setVolume</p></td>
+					<td  class="prop"><span class="inlineSpan">setVolume( Number )</span>:void</td>
+					<td class="lastCol">Set the audio volume, this method accepts a parameter that represents a number between 0 (audio mute state) and 1 (audio maximum volume).</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">startToScrub</p></td>
+					<td class="prop"><span class="inlineSpan">startToScrub()</span>:void</td>
+					<td class="lastCol">Notify EAP that the player is ready to scrubb.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">stopToScrub</p></td>
+					<td class="prop"><span class="inlineSpan">stopToScrub()</span>:void</td>
+					<td class="lastCol">Notify EAP that the player scrubb is done.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">scrub</p></td>
+					<td class="prop"><span class="inlineSpan">scrub( Number )</span>:void</td>
+					<td class="lastCol">Notify instance to scrub (set the audio position), this method accepts a parameter that represents a number between 0 (audio start position) and 1 (audio end position).</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">stop</p></td>
+					<td class="prop"><span class="inlineSpan">stop()</span>:void</td>
+					<td class="lastCol">Stops the playback and the loading process if the loading process has started.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">play</p></td>
+					<td class="prop"><span class="inlineSpan">play()</span>:void</td>
+					<td class="lastCol">Start / play playback.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">pause</p></td>
+					<td class="prop"><span class="inlineSpan">pause()</span>:void</td>
+					<td class="lastCol">Pause the playback.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">setSource</p></td>
+					<td class="prop"><span class="inlineSpan">setSource(path:String)</span>:void</td>
+					<td class="lastCol">Set a new mp3 source.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">getSourcePath</p></td>
+					<td class="prop"><span class="inlineSpan">getSourcePath():String</span>:void</td>
+					<td class="lastCol">Return source path.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">getCurrentTime</p></td>
+					<td class="prop"><span class="inlineSpan">getCurrentTime():String</span>:void</td>
+					<td class="lastCol">Return the current time.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">getDuration</p></td>
+					<td class="prop"><span class="inlineSpan">getDuration():String</span>:void</td>
+					<td class="lastCol">Return the duration.</td>
+				  </tr>
+				</table>
+
+				<p CLASS="largeLabel1">API - event listeners:</p>
+				<table>
+				  <tr class="firstTr">
+					<th class="fistTd">Event</td>
+					<th class="secondTd">Prefix</td>
+					<th class="thirdTd">Description</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">ready</p></td>
+					<td><p class="inlineSpan">FWDEAP.READY</p></td>
+					<td class="lastCol">Dispatched when the EAP instance API is actually available.</td>
+				  </tr>
+				   <tr>
+					<td><p class="mainProp">start</p></td>
+					<td><p class="inlineSpan">FWDEAP.START</p></td>
+					<td class="lastCol">Dispatched when the Mp3 playing has started.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">error</p></td>
+					<td><p class="inlineSpan">FWDEAP.ERROR</p></td>
+					<td class="lastCol">Dispatched when the EAP instance can't load or play the audio file, this event has a property of type string that represents the error message.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">stop</p></td>
+					<td><p class="inlineSpan">FWDEAP.STOP</p></td>
+					<td class="lastCol">Dispatched when the EAP instance is stopped.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">play</p></td>
+					<td><p class="inlineSpan">FWDEAP.PLAY</p></td>
+					<td class="lastCol">Dispatched when the EAP instance playback start to play.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">pause</p></td>
+					<td><p class="inlineSpan">FWDEAP.PAUSE</p></td>
+					<td class="lastCol">Dispatched when the EAP instance playback is paused.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">update</p></td>
+					<td><p class="inlineSpan">FWDEAP.UPDATE</p></td>
+					<td class="lastCol">Dispatched when the EAP instance is playing and it's position is changing (useful to update a custom scrub bar), this event has a property of type number between 0 (audio start position) and 1 (audio end position).</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">updateTime</p></td>
+					<td><p class="inlineSpan">FWDEAP.UPDATE_TIME</p></td>
+					<td class="lastCol">Dispatched when the EAP instance current duration is changing. This event has two properties of type string curTime and totalTime.</td>
+				  </tr>
+				  <tr>
+					<td><p class="mainProp">playComplete</p></td>
+					<td><p class="inlineSpan">FWDEAP.PLAY_COMPLETE</p></td>
+					<td class="lastCol">Dispatched when the EAP instance playback has reached the end of the audio file.</td>
+				  </tr>
+				</table>
+			</table>
+
+
+        <h3 id="credits"><strong>H) Sources and Credits</strong> - <a href="#toc">top</a></h3>
+        <p>This component was made by Sana Sandeep (Myslate Tech) <a href="http://www.myslatetech.com">Myslate Tech</a>, for more information and support contact us at <a href="mailto:sanasandeep@gmail.com">sanasandeep@gmail.com</a></p>
+		<p>Once again, thank you so much for purchasing this item. As I said at the beginning, I'd be glad to help you if you have any questions regarding this Audio Player and I'll do my best to assist.</p>
+
+		<p class="append-bottom alt large"><strong>Myslate Tech</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
+
+</script>
